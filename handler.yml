@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  sudo: yes
+  vars:
+    http_port: 80
+    doc_dir: /ansible/
+    doc_root: /var/www/html/ansible/
+    max_clients: 5
+
+  vars_prompt:
+    - name: username
+      prompt:  What is your name?  What is your Quest?  What is your fav color?
+
+  tasks:
+  - name: Ensure that Apache is installed
+    yum: name=httpd state=present
+    when: ansible_os_family == "RedHat"
+
+  - name: Start Apache Services
+    service: name=httpd enabled=yes state=started

@@ -1,0 +1,9 @@
+---
+- hosts: all
+  vars:
+    description: “this is a leaf switch”
+  remote_user: root
+  become: yes
+  tasks:
+  - name: write the quagga config file
+    template: src=/root/playbook/index.html dest=/root/
